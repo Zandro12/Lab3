@@ -47,6 +47,7 @@ def main():
                 print("Estudiante eliminado.")
             else:
                 print("Estudiante no encontrado.")
+
         elif opcion == "5":
             carnet = input("Carnet: ")
             materia = input("Materia: ")
@@ -56,9 +57,20 @@ def main():
             else:
                 print("Estudiante no encontrado.")
 
-
-
         elif opcion == "6":
+            carnet = input("Carnet: ")
+            promedio = gu.promedio_calificaciones(carnet)
+            print(f"Promedio de calificaciones: {promedio}")
+        elif opcion == "7":
+            aprobados, reprobados = gu.lista_aprobados_reprobados()
+            print("Aprobados:")
+            for estudiante in aprobados:
+                print(estudiante)
+            print("Reprobados:")
+            for estudiante in reprobados:
+                print(estudiante)
+
+        elif opcion == "8":
             break
         else:
             print("Opción no válida. Intente de nuevo.")

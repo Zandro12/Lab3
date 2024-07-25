@@ -38,3 +38,21 @@ def calificar_estudiante(carnet, materia, nota):
         estudiante["calificaciones"].append({"materia": materia, "nota": nota})
         return True
     return False
+
+def promedio_calificaciones(carnet):
+    estudiante = buscar_estudiante(carnet)
+    if estudiante and estudiante["calificaciones"]:
+        total = sum(calificacion["nota"] for calificacion in estudiante["calificaciones"])
+        return total / len(estudiante["calificaciones"])
+    return
+
+def lista_aprobados_reprobados():
+    aprobados = []
+    reprobados = []
+    for estudiante in estudiantes:
+        promedio = promedio_calificaciones(estudiante["carnet"])
+        if promedio >= 7:
+            aprobados.append(estudiante)
+        else:
+            reprobados.append(estudiante)
+    return aprobados, reprobados
