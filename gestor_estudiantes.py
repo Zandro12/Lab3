@@ -1,7 +1,7 @@
 
 estudiantes = []
 
-def agregar_usuario(carnet,nombre, edad,calificaciones):
+def agregar_estudiante(carnet,nombre, edad,calificaciones):
     estudiante = {
         "carnet":carnet,
         "nombre": nombre,
@@ -11,23 +11,30 @@ def agregar_usuario(carnet,nombre, edad,calificaciones):
     }
     estudiantes.append(estudiante)
 
-def buscar_usuario(carnet):
+def buscar_estudiante(carnet):
     for estudiante in estudiantes:
         if estudiante["carnet"] == carnet:
             return estudiante
     return None
 
-def modificar_usuario(carnet, nuevo_nombre, nueva_edad):
-    estudiante = buscar_usuario(carnet)
+def modificar_estudiante(carnet, nombre, edad, calificaciones):
+    estudiante = buscar_estudiante(carnet)
     if estudiante:
-        estudiante["nombre"] = nuevo_nombre
-        estudiante["edad"] = nueva_edad
+        estudiante["nombre"] = nombre
+        estudiante["edad"] = edad
+        estudiante["calificaciones"] = calificaciones
         return True
     return False
 
-def eliminar_usuario(carnet):
-    estudiante = buscar_usuario(carnet)
+def eliminar_estudiante(carnet):
+    estudiante = buscar_estudiante(carnet)
     if estudiante:
         estudiantes.remove(estudiante)
+        return True
+    return False
+def calificar_estudiante(carnet, materia, nota):
+    estudiante = buscar_estudiante(carnet)
+    if estudiante:
+        estudiante["calificaciones"].append({"materia": materia, "nota": nota})
         return True
     return False
