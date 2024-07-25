@@ -1,7 +1,6 @@
-# principal.py
+
 
 import gestor_estudiantes as gu
-
 
 def mostrar_menu():
     print("1. Agregar estudiante")
@@ -9,19 +8,20 @@ def mostrar_menu():
     print("3. Modificar estudiante")
     print("4. Eliminar estudiante")
     print("5. Agregar calificaciones")
-    print("6. Salir")
-
+    print("6. Mostrar promedio de calificaciones")
+    print("7. Mostrar lista de aprobados y reprobados")
+    print("8. Salir")
 
 def main():
     while True:
         mostrar_menu()
         opcion = input("Seleccione una opción: ")
         if opcion == "1":
-            carnet=input("carnet:" )
+            carnet = input("Carnet: ")
             nombre = input("Nombre: ")
             edad = int(input("Edad: "))
-            calificaciones=input("Calificaciones:" )
-            gu.agregar_estudiante(carnet,nombre,edad,calificaciones)
+            calificaciones = input("Calificaciones: ")
+            gu.agregar_estudiante(carnet, nombre, edad, calificaciones)
 
         elif opcion == "2":
             carnet = input("Carnet: ")
@@ -35,8 +35,8 @@ def main():
             carnet = input("Carnet: ")
             nombre = input("Nuevo nombre: ")
             edad = int(input("Nueva edad: "))
-            calificaciones = input("calificaciones")
-            if gu.modificar_estudiante(carnet, nombre, edad , calificaciones):
+            calificaciones = input("Calificaciones: ")
+            if gu.modificar_estudiante(carnet, nombre, edad, calificaciones):
                 print("Estudiante modificado.")
             else:
                 print("Estudiante no encontrado.")
@@ -50,10 +50,15 @@ def main():
 
         elif opcion == "5":
             carnet = input("Carnet: ")
-            materia = input("Materia: ")
-            nota = float(input("Nota: "))
-            if gu.calificar_estudiante(carnet, materia, nota):
-                print("Nota agregada.")
+            calificaciones = []
+            while True:
+                materia = input("Materia (o 'fin' para terminar): ")
+                if materia.lower() == 'fin':
+                    break
+                nota = float(input("Nota: "))
+                calificaciones.append((materia, nota))
+            if gu.calificar_estudiante(carnet, calificaciones):
+                print("Notas agregadas.")
             else:
                 print("Estudiante no encontrado.")
 
@@ -61,6 +66,7 @@ def main():
             carnet = input("Carnet: ")
             promedio = gu.promedio_calificaciones(carnet)
             print(f"Promedio de calificaciones: {promedio}")
+
         elif opcion == "7":
             aprobados, reprobados = gu.lista_aprobados_reprobados()
             print("Aprobados:")
@@ -75,6 +81,6 @@ def main():
         else:
             print("Opción no válida. Intente de nuevo.")
 
-
 if __name__ == "__main__":
     main()
+

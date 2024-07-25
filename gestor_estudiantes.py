@@ -1,13 +1,11 @@
-
 estudiantes = []
 
-def agregar_estudiante(carnet,nombre, edad,calificaciones):
+def agregar_estudiante(carnet, nombre, edad, calificaciones):
     estudiante = {
-        "carnet":carnet,
+        "carnet": carnet,
         "nombre": nombre,
         "edad": edad,
-        "calificaciones":calificaciones
-
+        "calificaciones": []
     }
     estudiantes.append(estudiante)
 
@@ -32,10 +30,13 @@ def eliminar_estudiante(carnet):
         estudiantes.remove(estudiante)
         return True
     return False
-def calificar_estudiante(carnet, materia, nota):
+
+def calificar_estudiante(carnet, calificaciones):
     estudiante = buscar_estudiante(carnet)
     if estudiante:
-        estudiante["calificaciones"].append({"materia": materia, "nota": nota})
+        for calificacion in calificaciones:
+            materia, nota = calificacion
+            estudiante["calificaciones"].append({"materia": materia, "nota": nota})
         return True
     return False
 
@@ -44,7 +45,7 @@ def promedio_calificaciones(carnet):
     if estudiante and estudiante["calificaciones"]:
         total = sum(calificacion["nota"] for calificacion in estudiante["calificaciones"])
         return total / len(estudiante["calificaciones"])
-    return
+    return 0
 
 def lista_aprobados_reprobados():
     aprobados = []
