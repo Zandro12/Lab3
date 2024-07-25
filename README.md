@@ -1,2 +1,2 @@
 # Lab3
-Alejandro Gomez y Derrifeth Umaña
+Alejandro Gomez Miranda y Derrifeth Umaña Fernandez
