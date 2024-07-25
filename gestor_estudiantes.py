@@ -57,3 +57,5 @@ def lista_aprobados_reprobados():
         else:
             reprobados.append(estudiante)
     return aprobados, reprobados
+
+
